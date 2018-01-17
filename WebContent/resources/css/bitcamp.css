@@ -1,2 +1,4 @@
 @charset "UTF-8";
-table, tr, td, th {margin: 0px auto; border: solid red;}
+#main_profil_table{width: 80%; margin: 30px auto 0px; border: 1px solid red;}
+#main_profil_tr{}
+.class{width: 100px}

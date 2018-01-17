@@ -4,9 +4,9 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>main</title>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index.css" />
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css" />
-	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/Penguin_4.ico"/>
+	<link rel="stylesheet" href="${css}/index.css" />
+	<link rel="stylesheet" href="${css}/common.css" />
+	<link rel="shortcut icon" href="${ctx}/resources/img/Penguin_4.ico"/>
 </head>
 <body>
 <div id="wrapper">
@@ -19,7 +19,7 @@
 			<table id="index_table">
 				<tr>
 					<td id = index_join colspan="5">
-						<form id = login_form action="${pageContext.request.contextPath}/user/auth.do">
+						<form id = login_form action="${ctx}/user.do">
 							<table id="index_login_box" >
 			 					<tr>
 			 						<td> 
@@ -32,6 +32,8 @@
 			 					<tr>
 			 						<td >
 			 						<input id="index_input_pw" type="password" name="pass" placeholder="pw"/>
+			 						<input type="hidden" name="cmd"  value="login"/>
+			 						<input type="hidden" name="page"  value="mypage"/>
 			 						</td>
 			 					</tr>			 				
 			 				</table>
@@ -56,12 +58,12 @@
 document.querySelector('#go_join_link').addEventListener("click",
 function() {
 			alert('회원가입으로 이동');
-			location.href = "${pageContext.request.contextPath}/user/join.do";},false);
-							<%-- <%=application.getContextPath()%> --%>
+		location.href = "${ctx}/user.do?cmd=move&page=join";},false);
+						<%-- <%=application.getContextPath()%> --%>
 document.querySelector('#go_jdbc_link').addEventListener("click",aaa,false);
 function aaa(){
 	alert('JDBC TEST로 이동');
-	location.href = "${pageContext.request.contextPath}/common/jdbc_test.do";
+	location.href = "${ctx}/common/jdbc_test.do";
 	}
 document.querySelector('#index_login_btn').addEventListener("click",login,false);
 function login() {
@@ -71,7 +73,7 @@ function login() {
 document.querySelector('#go_admin_link').addEventListener("click",admin,false);
 function admin() {
 	alert('관리자로 이동');	
-	location.href = "${pageContext.request.contextPath}/admin/main.do";
+	location.href = "${ctx}/admin/main.do";
 }
 </script>
 </body>

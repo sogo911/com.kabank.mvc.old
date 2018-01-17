@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.kabank.mvc.domain.MemberBean" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<title>JOIN</title>
-	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/common.css" />
-	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/member.css" />
+	<link rel="stylesheet" href="${css}/common.css" />
+	<link rel="stylesheet" href="${css}/member.css" />
 </head>
 <body>
 <div id="wrapper">
 	<header id="join_header">
-		<a href="../index.jsp">HOME</a>
+		<a href="${ctx}/user.do">HOME</a>
 	</header>
 	<section>
 		<article>
@@ -21,7 +22,7 @@
 				</hgroup>
 			</header>
 		</article>
-		<form id="join_form" action="${pageContext.request.contextPath}/user/login.do">
+		<form id="join_form" action="${ctx}/user.do">
 			<table id="join_table">
 				<tr>
 					<td>아이디</td>
@@ -53,14 +54,7 @@
 				<tr>
 					<td>이메일</td>
 					<td>
-						<input type="email" name="email1"/> @
-						<select name="email" id="email2">
-                              <option value="">직접입력</option>
-                              <option value="gmail.com">gamil.com</option>
-                              <option value="naver.com">naver.com</option>
-                              <option value="hanmail.net">hanmail.net</option>
-                              <option value="daum.net">daum.net</option>
-                        </select>
+						<input type="email" name="email"/> 
 					</td>
 				</tr>
 				<tr>
@@ -72,22 +66,15 @@
 				<tr>
 					<td>주민번호</td>
 					<td>
-					 <input  pattern="[0-9]{6}" type="text" name="ssn1"/> - <input  pattern="[0-9]{1}" type="text" name="ssn2"/> 
-					 * 생년월일과 앞번호만 입력
+					 <input  pattern="[0-9]{7}" type="text" name="ssn"/> 
+					 * - 제외하고 생년월일과 앞번호만 입
 					</td>
 				</tr>
 				<tr>
 					<td>핸드폰번호</td>
 					<td>
-					<input type="radio" name= tel value="SKT"/>SKT
-					<input type="radio" name= tel value="KT" />KT
-					<input type="radio" name= tel value="LG" />LG
-					 <select name="phone1" id="phone1">
-                              <option value="">선택</option>
-                              <option value="010">010</option>
-                              <option value="011">011</option>
-                              <option value="02">02</option>
-                        </select> - <input pattern="[0-9]{4}" type="tel" name="phone2"/> - <input pattern="[0-9]{4}" type="text" name="phone3"/>
+					<input pattern="[0-9]" type="tel" name="phone"/>
+					* - 제외하고 입력
 					</td>
 				</tr>
 				<tr>
@@ -106,6 +93,9 @@
 					</td>
 				</tr>
 			</table>
+			<input type="hidden" name="cmd" value="join" />
+			<input type="hidden" name="dir" value="user" />
+			<input type="hidden" name="page" value="login" />
 		</form>
 	</section>
 	<aside>
@@ -114,13 +104,11 @@
 </div>
 <%@ include file="../common/footer.jsp" %>
 <script>
-var checkDuplBtn = document.querySelector('#check_dupl_btn');
-checkDuplBtn.addEventListener("click",checkJoin,false);
-function checkJoin(){
+document.querySelector('#check_dupl_btn').addEventListener("click",function (){
 	alert('로그인으로 이동');
-	var form = document.querySelector('#join_form');
-	form.submit();
-}
+	document.querySelector('#join_form').submit();
+},false);
+
 </script>
 </body>
 </html>

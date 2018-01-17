@@ -28,10 +28,11 @@
 			<tr>
 				<td>
 					테이블 생성 <br />
-					<form id = "create_form" ; action="${pageContext.request.contextPath}/admin/create_table.do">
+					<form id = "create_form" action="${pageContext.request.contextPath}/admin/create_table.do">
 					<select name="table_name" id="table_name">
 						<option value="member"> 회 원
 						<option value="attend"> 출 석
+						<option value="kakao_bank"> 은 행
 					</select>
 					<button id= "create_btn">생 성</button>
 					</form>

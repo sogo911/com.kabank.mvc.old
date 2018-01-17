@@ -39,19 +39,50 @@ try{
 %>
 <!doctype html>
 <html lang="en">
-<%@ include file="../common/head.jsp" %>
 <head>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bitcamp.css" />
+<link rel="stylesheet" href="${css}/common.css" />
+<link rel="stylesheet" href="${css}/bitcamp.css" />
 </head>
 <body>
 <%@ include file="../common/header.jsp" %>	
 <%@ include file="../common/nav.jsp" %>
 <div id="wrapper">
-<form id="main_form" action="result.jsp">
+<form id="main_form" action="${ctx}/user.do">
 <section>
 <article>
 	<h1>비트캠프 메인</h1>
+	<table id = "main_profil_table">
+		<tr id = "main_profil_tr">
+			<td rowspan="5">
+			사진</td>
+		</tr>
+		<tr>
+			<td class="column">ID</td>
+			<td>${sessionScope.user.id}</td>
+			<td class="column">생년월일</td>
+			<td>${sessionScipe.user.ssn}</td>
+		</tr>
+		<tr>
+			<td class="column">PW</td>
+			<td>${sessionScope.user.pass}</td>
+			<td class="column">전화번호</td>
+			<td>${sessionScope.user.phone}</td>
+		</tr>
+		<tr>
+			<td class="column">이름</td>
+			<td>${sessionScope.user.name}</td>
+			<td class="column">이메일</td>
+			<td>${sessionScope.user.email}</td>
+		</tr>
+		<tr>
+			<td class="column">성별</td>
+			<td></td>
+			<td class="column">주소</td>
+			<td>${sessionScope.user.addr}</td>
+		</tr>
+	</table>
+</article>
+<article>
 	<table>
 		<tr>
 			<th>월</th>
@@ -109,19 +140,26 @@ try{
 			<td>ㅇ</td>
 			<td>ㅇ</td>
 		</tr>
-		<tr>
-			<td colspan = "5">
-				<input type="hidden" name="id" value="sogo911"/>
-				<button id="attend_result_btn" >확 인</button>
-			</td>
-		</tr>
 	</table> 
-
 </article>
 </section>
 </form>
+				<button id="attend_result_btn" >확 인</button>
+				<button id="pass_change_btn" >비밀번호 변경</button>
+				<button id="delete_btn">탈 퇴</button>
 <%@ include file="../common/footer.jsp" %>
 </div>
 </body>
-<script src="../../js/bitcamp/main.js"></script>
+<script>
+document.querySelector('#pass_change_btn').addEventListener("click",changePass,false);
+function changePass(){
+	alert('비밀번호 변경으로 이동');
+	location.href = "${ctx}/user.do?cmd=move&page=change_pass";
+}
+document.querySelector('#delete_btn').addEventListener("click",function(){
+	alert('회원 탈퇴 / 로그인으로 이동');
+	location.href = "${ctx}/user.do?cmd=delete_member"
+	}
+	,false);
+</script>
 </html>

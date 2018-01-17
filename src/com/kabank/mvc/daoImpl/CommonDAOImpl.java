@@ -1,24 +1,29 @@
 package com.kabank.mvc.daoImpl;
 
-import com.kabank.mvc.constant.CommonSql;
-import com.kabank.mvc.constant.DBMS;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import com.kabank.mvc.dao.CommonDAO;
-import java.sql.*;
+import com.kabank.mvc.enums.DMLEnum;
+import com.kabank.mvc.enums.OracleEnum;
+import com.kabank.mvc.enums.TnameEnum;
 
 public class CommonDAOImpl implements CommonDAO{
 	@Override
 	public String selectTableCount() {
 		String count = "";
 		try {
-			Class.forName(DBMS.ORACLE_DRIVER);
+			Class.forName(OracleEnum.values().toString());
 			Connection conn = DriverManager.getConnection(
-					DBMS.ORACLE_CONNECTION_URL,
-					DBMS.ORACLE_USERNAME,
-					DBMS.ORACLE_PASSWORD);
+					OracleEnum.values().toString(),
+					OracleEnum.values().toString(),
+					OracleEnum.values().toString());
 			Statement stmt = conn.createStatement();
 			/*String sql = com.getCommonSQL("Member");
 			System.out.println("실행할 쿼리:"+sql);*/
-			ResultSet rs = stmt.executeQuery(CommonSql.getCommonSQL("Member"));
+			ResultSet rs = stmt.executeQuery(DMLEnum.COUNT.toString()+TnameEnum.MEMBER);
 			while(rs.next()) {
 				count = rs.getString("count");
 			}

@@ -1,72 +1,12 @@
 package com.kabank.mvc.domain;
 
+import lombok.Data;
+
+@Data
+
 public class MemberBean {
 	private String name, id, pass, ssn, 
-					phone, email, profile, addr ;
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getPass() {
-		return pass;
-	}
-
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
-
-	public String getSsn() {
-		return ssn;
-	}
-
-	public void setSsn(String ssn) {
-		this.ssn = ssn;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getProfile() {
-		return profile;
-	}
-
-	public void setProfile(String profile) {
-		this.profile = profile;
-	}
-
-	public String getAddr() {
-		return addr;
-	}
-
-	public void setAddr(String addr) {
-		this.addr = addr;
-	}
+					phone, email, profile, addr, account;
 
 	@Override
 	public String toString() {

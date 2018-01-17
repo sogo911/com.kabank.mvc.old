@@ -1,13 +1,14 @@
 package com.kabank.mvc.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kabank.mvc.constant.Path;
+import com.kabank.mvc.enums.PathEnum;
 import com.kabank.mvc.service.AdminService;
 import com.kabank.mvc.serviceImpl.AdminServiceImpl;
 
@@ -17,8 +18,8 @@ public class AdminController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		System.out.println("=======관리자 서블릿 접근=======");
-		String dir = request.getServletPath().split(Path.SEPARATOR)[1];
-		String action = request.getServletPath().split(Path.SEPARATOR)[2].split(Path.DOT)[0];
+		String dir = request.getServletPath().split(PathEnum.SEPARATOR.getValue())[1];
+		String action = request.getServletPath().split(PathEnum.SEPARATOR.getValue())[2].split(PathEnum.DOT.getValue())[0];
 		String dest = "";
 		System.out.println("dir: "+dir);
 		System.out.println("액션: "+action);
@@ -36,7 +37,7 @@ public class AdminController extends HttpServlet {
 			break;
 		}
 		request
-		.getRequestDispatcher(Path.VIEW+dir+Path.SEPARATOR+dest+Path.EXTENSION)
+		.getRequestDispatcher(PathEnum.VIEW.getValue()+dir+PathEnum.SEPARATOR.getValue()+dest+PathEnum.EXTENSION.getValue())
 		.forward(request, response);
 		
 	}
